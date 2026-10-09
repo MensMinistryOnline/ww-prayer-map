@@ -1,0 +1,224 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Weekend Warriors · Pray for Your Leaders (preview)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@800&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#1C1916;color:#F4EFE7;font-family:Barlow,sans-serif}main{padding:56px 24px}h3,h4,h5{font-family:'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em;font-weight:800}h3{font-size:2.6rem;line-height:1}h4{font-size:2rem}p{line-height:1.55}</style></head><body><main><!-- Weekend Warriors · Pray for Your Leaders map — MensMinistry.online
+     Paste into a Squarespace Code block (HTML, Display Source Code OFF) on a dark (Darkest 1) section.
+     Set DATA_BASE below to your GitHub Pages data URL. -->
+<div id="wwmap" class="wwmap" data-base="data/">
+  <div class="wwmap__intro">
+    <p class="wwmap__eyebrow">Circles 5–7 · Pray by name</p>
+    <h3 class="wwmap__title">Who are you praying for this month?</h3>
+    <p class="wwmap__lede">Click your state for this month's names — your governor, statewide officers, state legislators, members of Congress, and national leaders. Download the list and take it to the table.</p>
+  </div>
+
+  <form class="wwmap__lookup" autocomplete="on">
+    <label for="wwmap-addr" class="wwmap__label">Find your own district leaders</label>
+    <div class="wwmap__row">
+      <input id="wwmap-addr" type="text" placeholder="Home street address, city, state" required>
+      <button type="submit">Find My Leaders</button>
+    </div>
+    <p class="wwmap__fine">Your address is sent only to the U.S. Census Bureau's public geocoder to find your districts. It is not stored.</p>
+  </form>
+
+  <div class="wwmap__grid" role="group" aria-label="Choose a state"></div>
+  <div class="wwmap__select-wrap">
+    <label for="wwmap-select" class="wwmap__label">Or choose from the list</label>
+    <select id="wwmap-select"><option value="">Select a state…</option></select>
+  </div>
+
+  <div class="wwmap__panel" aria-live="polite" hidden></div>
+  <p class="wwmap__updated"></p>
+</div>
+
+<style>
+.wwmap{--forge:#1C1916;--bone:#F4EFE7;--ember:#BF3B21;--iron:#2E2A25;--deep:#8C2612;--ash:#8F877B;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;color:var(--bone);max-width:1040px;margin:0 auto;text-align:left}
+.wwmap *{box-sizing:border-box}
+.wwmap__eyebrow{color:var(--ember)!important;text-transform:uppercase;letter-spacing:.15em;font-weight:600;font-size:.85rem!important;margin:0 0 .4rem!important}
+.wwmap__title{margin:0 0 .6rem!important;color:var(--bone)!important}
+.wwmap__lede{color:var(--bone)!important;max-width:62ch;margin:0 0 1.5rem!important}
+.wwmap__label{display:block;text-transform:uppercase;letter-spacing:.12em;font-weight:500;font-size:.8rem;margin:0 0 .45rem;color:var(--bone)}
+.wwmap__lookup{background:var(--iron);padding:1.1rem 1.2rem;margin:0 0 1.5rem;border-left:4px solid var(--ember)}
+.wwmap__row{display:flex;gap:.5rem;flex-wrap:wrap}
+.wwmap__row input{flex:1 1 260px;min-width:0;background:var(--bone)!important;color:var(--forge)!important;-webkit-text-fill-color:var(--forge);border:2px solid var(--bone)!important;border-radius:0!important;padding:.75rem .9rem!important;font:inherit;font-size:1rem!important}
+.wwmap__row input:focus{outline:none;border-color:var(--ember)!important;box-shadow:0 0 0 3px rgba(191,59,33,.35)}
+.wwmap button{background:var(--ember);color:var(--bone);border:0;border-radius:0;padding:.75rem 1.2rem;font:inherit;font-weight:600;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+.wwmap button:hover,.wwmap button:focus-visible{background:var(--deep)}
+.wwmap button.wwmap__ghost{background:transparent;border:2px solid var(--ash);color:var(--bone)}
+.wwmap button.wwmap__ghost:hover{border-color:var(--bone);background:transparent}
+.wwmap__fine{font-size:.8rem!important;color:var(--ash)!important;margin:.5rem 0 0!important}
+.wwmap__grid{display:grid;grid-template-columns:repeat(11,1fr);gap:5px;margin:0 0 1rem}
+.wwmap .wwmap__tile{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:var(--iron);color:var(--bone);border:0;padding:0!important;font-weight:700!important;font-size:clamp(.62rem,1.5vw,1rem)!important;letter-spacing:.04em!important;transition:background .12s ease,transform .12s ease}
+.wwmap .wwmap__tile:hover,.wwmap .wwmap__tile:focus-visible{background:var(--ember)!important;transform:translateY(-2px);outline:none}
+.wwmap__tile[aria-pressed=true]{background:var(--ember)!important;box-shadow:inset 0 0 0 3px var(--bone)}
+.wwmap__select-wrap{max-width:340px;margin:0 0 1.5rem}
+.wwmap select{width:100%;background:var(--bone);color:var(--forge);border:2px solid var(--bone);border-radius:0;padding:.65rem .8rem;font:inherit}
+.wwmap__panel{background:var(--bone);color:var(--forge);padding:1.6rem 1.6rem 1.2rem;margin:0 0 1rem}
+.wwmap__panel h4{color:var(--forge)!important;margin:0 0 .2rem!important}
+.wwmap__panel .wwmap__month{color:var(--deep);text-transform:uppercase;letter-spacing:.12em;font-weight:600;font-size:.85rem;margin:0 0 1rem}
+.wwmap__actions{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 1.2rem}
+.wwmap__actions button.wwmap__ghost{color:var(--forge);border-color:var(--forge)}
+.wwmap__circle{border-top:3px solid var(--ember);padding:.9rem 0 .4rem;margin:0}
+.wwmap__circle h5{margin:0 0 .5rem!important;color:var(--forge)!important;font-size:1.25rem!important}
+.wwmap__circle h6{margin:.8rem 0 .3rem!important;font-family:'Barlow',sans-serif!important;text-transform:uppercase!important;letter-spacing:.1em!important;font-size:.8rem!important;font-weight:600!important;color:var(--deep)!important}
+.wwmap__circle ul{list-style:none!important;margin:0!important;padding:0!important;columns:2 260px;column-gap:1.5rem}
+.wwmap__circle li{margin:0!important;padding:.28rem 0!important;border-bottom:1px solid #DED7CB;break-inside:avoid;font-size:1rem!important;color:var(--forge)!important}
+.wwmap__circle li::before{content:none!important}
+.wwmap__circle li span{color:#5E574D;font-size:.9rem}
+.wwmap__circle p{color:var(--forge)!important;margin:.3rem 0 .6rem!important;font-size:.95rem!important}
+.wwmap__circle a{color:var(--deep)!important;text-decoration:underline!important}
+.wwmap__full{margin-top:.6rem}
+.wwmap__full summary{cursor:pointer;font-weight:600;color:var(--deep);padding:.4rem 0}
+.wwmap__note{background:#ECE5D9;padding:.7rem .9rem;font-size:.9rem;margin:0 0 1rem;color:var(--forge)}
+.wwmap__updated{font-size:.8rem!important;color:var(--ash)!important}
+@media (max-width:640px){.wwmap__grid{gap:3px}.wwmap__panel{padding:1.1rem}}
+</style>
+
+<script>
+(function(){
+  var root = document.getElementById('wwmap'); if(!root) return;
+  var BASE = root.getAttribute('data-base');
+  var TILES = {AK:[0,0],ME:[10,0],VT:[9,1],NH:[10,1],WA:[0,2],ID:[1,2],MT:[2,2],ND:[3,2],MN:[4,2],IL:[5,2],WI:[6,2],MI:[7,2],NY:[8,2],RI:[9,2],MA:[10,2],
+    OR:[0,3],NV:[1,3],WY:[2,3],SD:[3,3],IA:[4,3],IN:[5,3],OH:[6,3],PA:[7,3],NJ:[8,3],CT:[9,3],CA:[0,4],UT:[1,4],CO:[2,4],NE:[3,4],MO:[4,4],KY:[5,4],WV:[6,4],VA:[7,4],MD:[8,4],DE:[9,4],
+    AZ:[1,5],NM:[2,5],KS:[3,5],AR:[4,5],TN:[5,5],NC:[6,5],SC:[7,5],DC:[8,5],OK:[3,6],LA:[4,6],MS:[5,6],AL:[6,6],GA:[7,6],HI:[0,7],TX:[3,7],FL:[8,7]};
+  var FIPS = {'01':'AL','02':'AK','04':'AZ','05':'AR','06':'CA','08':'CO','09':'CT','10':'DE','11':'DC','12':'FL','13':'GA','15':'HI','16':'ID','17':'IL','18':'IN','19':'IA','20':'KS','21':'KY','22':'LA','23':'ME','24':'MD','25':'MA','26':'MI','27':'MN','28':'MS','29':'MO','30':'MT','31':'NE','32':'NV','33':'NH','34':'NJ','35':'NM','36':'NY','37':'NC','38':'ND','39':'OH','40':'OK','41':'OR','42':'PA','44':'RI','45':'SC','46':'SD','47':'TN','48':'TX','49':'UT','50':'VT','51':'VA','53':'WA','54':'WV','55':'WI','56':'WY'};
+  var WORLD = ['North Korea','Somalia','Yemen','Sudan','Eritrea','Syria','Nigeria','Pakistan','Libya','Iran','the missionaries your church sends (by name)','the persecuted church worldwide'];
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var now = new Date(), M = now.getMonth(), MI = now.getFullYear()*12 + M, MONTH = MONTHS[M] + ' ' + now.getFullYear();
+  var grid = root.querySelector('.wwmap__grid'), sel = root.querySelector('#wwmap-select'), panel = root.querySelector('.wwmap__panel');
+  var index = null, cache = {}, current = null;
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function getJSON(u){ if(cache[u]) return Promise.resolve(cache[u]); return fetch(u).then(function(r){if(!r.ok) throw new Error(r.status); return r.json();}).then(function(j){cache[u]=j; return j;}); }
+  function slice(arr, k){ // rotate a list across 12 months: this month's share
+    if(!arr.length) return []; var per = Math.max(1, Math.ceil(arr.length/(k||12))), start = (MI % Math.ceil(arr.length/per))*per;
+    return arr.slice(start, start+per);
+  }
+  function pick(arr){ return arr.length ? arr[MI % arr.length] : null; }
+  function normD(s){ return String(s||'').toLowerCase().replace(/state (senate|house|legislative)?\s*district/g,'').replace(/district|assembly|subdistrict/g,'').replace(/^0+/,'').replace(/[^a-z0-9]/g,''); }
+
+  // build tiles + select
+  Object.keys(TILES).forEach(function(st){
+    var b = document.createElement('button'); b.type='button'; b.className='wwmap__tile'; b.textContent = st;
+    b.style.gridColumn = (TILES[st][0]+1); b.style.gridRow = (TILES[st][1]+1); b.setAttribute('aria-pressed','false'); b.dataset.st = st;
+    b.addEventListener('click', function(){ openState(st); }); grid.appendChild(b);
+  });
+
+  getJSON(BASE + 'index.json').then(function(ix){
+    index = ix;
+    Object.keys(ix.states).sort(function(a,b){return ix.states[a].name.localeCompare(ix.states[b].name);}).forEach(function(st){
+      var o = document.createElement('option'); o.value = st; o.textContent = ix.states[st].name; sel.appendChild(o);
+      var t = grid.querySelector('[data-st="'+st+'"]'); if(t){ t.title = ix.states[st].name; t.setAttribute('aria-label', ix.states[st].name); }
+    });
+    root.querySelector('.wwmap__updated').textContent = 'Names refreshed automatically from public records. Last update: ' + ix.updated + '.';
+  }).catch(function(){ root.querySelector('.wwmap__updated').textContent = 'The leader list could not load right now. Please try again shortly.'; });
+  sel.addEventListener('change', function(){ if(sel.value) openState(sel.value); });
+
+  function li(p){ return '<li>' + esc(p.name) + (p.role ? ' <span>— ' + esc(p.role) + '</span>' : '') + '</li>'; }
+  function list(title, arr){ return arr && arr.length ? '<h6>' + esc(title) + '</h6><ul>' + arr.map(li).join('') + '</ul>' : ''; }
+  function legItems(arr, label){ return arr.map(function(p){ return {name:p.name, role: label + (p.district ? ', District ' + p.district : '')}; }); }
+
+  function buildPlan(d, mine){
+    var nat = index.national, ch = d.chamber_names;
+    var sen = legItems(d.state_senate, ch.upper), hou = legItems(d.state_house, ch.lower);
+    var c5 = { always: d.executives.slice(0,3), rest: d.executives.slice(3), sen: slice(sen), hou: slice(hou) };
+    var c6 = { top: [{name:nat.president, role:'President of the United States'},{name:nat.vice_president, role:'Vice President of the United States'}],
+      sens: d.us_senators, reps: d.us_representatives.length > 6 ? slice(d.us_representatives, 6) : d.us_representatives,
+      leader: pick(nat.congressional_leaders), justice: pick(nat.supreme_court) };
+    return {c5:c5, c6:c6, mine:mine, sen:sen, hou:hou};
+  }
+
+  function render(d, mine){
+    var p = buildPlan(d, mine), ch = d.chamber_names, h = '';
+    h += '<h4>' + esc(d.name) + '</h4><p class="wwmap__month">' + esc(MONTH) + ' prayer list</p>';
+    h += '<div class="wwmap__actions"><button type="button" data-act="print">Print / Save PDF</button><button type="button" class="wwmap__ghost" data-act="txt">Download List (.txt)</button></div>';
+    if(mine) h += '<div class="wwmap__note"><strong>Your district leaders</strong> are marked first. Address matched: ' + esc(mine.matched) + '</div>';
+    h += '<section class="wwmap__circle"><h5>Circle 5 · Our State</h5>';
+    if(mine && (mine.sen.length || mine.hou.length)) h += list('Your state legislators', mine.sen.concat(mine.hou));
+    h += list('Statewide leaders', p.c5.always.concat(p.c5.rest));
+    h += list('This month: ' + ch.upper, p.c5.sen) + list('This month: ' + ch.lower, p.c5.hou);
+    h += '<details class="wwmap__full"><summary>See every ' + esc(d.name) + ' legislator (' + (p.sen.length + p.hou.length) + ')</summary>' + list(ch.upper, p.sen) + list(ch.lower, p.hou) + '</details></section>';
+    h += '<section class="wwmap__circle"><h5>Circle 6 · Our Nation</h5>';
+    if(mine && mine.rep) h += list('Your U.S. Representative', [mine.rep]);
+    h += list('National leaders', p.c6.top.concat([p.c6.leader, p.c6.justice].filter(Boolean)));
+    h += list(d.state === 'DC' ? 'Delegate to Congress' : 'U.S. Senators', p.c6.sens);
+    h += list(d.us_representatives.length > 6 ? 'This month: U.S. Representatives' : 'U.S. Representatives', p.c6.reps);
+    h += '</section>';
+    h += '<section class="wwmap__circle"><h5>Circle 7 · The World</h5><p><strong>This month: ' + esc(WORLD[M]) + '.</strong> Pray for believers, pastors, and those in authority there by name. Background and prayer points: <a href="https://www.opendoors.org/en-US/persecution/countries/" target="_blank" rel="noopener">Open Doors World Watch List</a>.</p></section>';
+    h += '<section class="wwmap__circle"><h5>Local leaders</h5><p>Add your mayor, county judge or executive, city council, sheriff, and school board. Find them through <a href="https://www.usa.gov/elected-officials" target="_blank" rel="noopener">USA.gov</a> or your county\'s website.</p></section>';
+    panel.innerHTML = h; panel.hidden = false;
+    panel.querySelector('[data-act=print]').addEventListener('click', function(){ printList(d, p); });
+    panel.querySelector('[data-act=txt]').addEventListener('click', function(){ downloadTxt(d, p); });
+    panel.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function sections(d, p){
+    var ch = d.chamber_names, s = [];
+    var c5 = []; if(p.mine && (p.mine.sen.length||p.mine.hou.length)) c5.push(['Your state legislators', p.mine.sen.concat(p.mine.hou)]);
+    c5.push(['Statewide leaders', p.c5.always.concat(p.c5.rest)], ['This month: ' + ch.upper, p.c5.sen], ['This month: ' + ch.lower, p.c5.hou]);
+    var c6 = []; if(p.mine && p.mine.rep) c6.push(['Your U.S. Representative', [p.mine.rep]]);
+    c6.push(['National leaders', p.c6.top.concat([p.c6.leader, p.c6.justice].filter(Boolean))], [d.state==='DC'?'Delegate to Congress':'U.S. Senators', p.c6.sens], ['U.S. Representatives', p.c6.reps]);
+    s.push(['Circle 5 · Our State', c5], ['Circle 6 · Our Nation', c6]);
+    return s;
+  }
+  function downloadTxt(d, p){
+    var t = 'WEEKEND WARRIORS · ' + d.name.toUpperCase() + ' · ' + MONTH.toUpperCase() + ' PRAYER LIST\nMensMinistry.online/weekend-warriors\n"I urge, then, first of all, that petitions, prayers, intercession and thanksgiving be made for all people — for kings and all those in authority." 1 Timothy 2:1-2\n';
+    sections(d, p).forEach(function(c){ t += '\n== ' + c[0] + ' ==\n'; c[1].forEach(function(g){ if(!g[1].length) return; t += '\n' + g[0] + '\n'; g[1].forEach(function(x){ t += '  [ ] ' + x.name + (x.role ? ' — ' + x.role : '') + '\n'; }); }); });
+    t += '\n== Circle 7 · The World ==\n  This month: ' + WORLD[M] + '\n\n== Local leaders ==\n  Mayor: ______________  County: ______________  Council/School board: ______________\n\nSource: public records (Congress, Plural Open States). Updated ' + d.updated + '.\n';
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([t], {type:'text/plain'}));
+    a.download = 'Weekend-Warriors-' + d.name.replace(/\s+/g,'-') + '-' + MONTH.replace(' ','-') + '.txt'; document.body.appendChild(a); a.click(); a.remove();
+  }
+  function printList(d, p){
+    var w = window.open('', '_blank'); if(!w) return;
+    var h = '<!doctype html><html><head><meta charset="utf-8"><title>Weekend Warriors · ' + esc(d.name) + ' · ' + esc(MONTH) + '</title><style>body{font-family:Barlow,Helvetica,Arial,sans-serif;color:#1C1916;margin:.6in;font-size:11pt}h1{font-size:22pt;margin:0;text-transform:uppercase;letter-spacing:.02em}.m{color:#8C2612;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin:.2em 0 1em}h2{border-top:3px solid #BF3B21;padding-top:.4em;margin:1.2em 0 .3em;font-size:14pt}h3{font-size:9pt;text-transform:uppercase;letter-spacing:.1em;color:#8C2612;margin:.8em 0 .2em}ul{list-style:none;padding:0;margin:0;columns:2;column-gap:.4in}li{padding:3px 0;border-bottom:1px solid #ddd;break-inside:avoid}li:before{content:"\\2610  "}span{color:#5E574D}.v{font-style:italic;margin:.4em 0}.f{margin-top:2em;font-size:8.5pt;color:#5E574D}</style><' + '/head><body>';
+    h += '<h1>Weekend Warriors · ' + esc(d.name) + '</h1><p class="m">' + esc(MONTH) + ' prayer list · MensMinistry.online</p><p class="v">“I urge, then, first of all, that petitions, prayers, intercession and thanksgiving be made for all people — for kings and all those in authority.” 1 Timothy 2:1–2</p>';
+    sections(d, p).forEach(function(c){ h += '<h2>' + esc(c[0]) + '</h2>'; c[1].forEach(function(g){ if(!g[1].length) return; h += '<h3>' + esc(g[0]) + '</h3><ul>' + g[1].map(function(x){return '<li>' + esc(x.name) + (x.role ? ' <span>— ' + esc(x.role) + '</span>' : '') + '</li>';}).join('') + '</ul>'; }); });
+    h += '<h2>Circle 7 · The World</h2><p>This month: ' + esc(WORLD[M]) + '</p><h2>Local leaders</h2><p>Mayor: ______________ &nbsp; County: ______________ &nbsp; Council / School board: ______________</p>';
+    h += '<p class="f">Names from public records (U.S. Congress; Plural Open States). Updated ' + esc(d.updated) + '. Verify before publishing.</p>';
+    w.document.open(); w.document.write(h); w.document.close(); w.focus(); setTimeout(function(){ w.print(); }, 500);
+  }
+
+  function openState(st, mine){
+    current = st; sel.value = st;
+    grid.querySelectorAll('.wwmap__tile').forEach(function(t){ t.setAttribute('aria-pressed', t.dataset.st === st ? 'true' : 'false'); });
+    var wait = index ? Promise.resolve() : getJSON(BASE + 'index.json').then(function(ix){ index = ix; });
+    wait.then(function(){ return getJSON(BASE + 'states/' + st + '.json'); }).then(function(d){
+      var m = null;
+      if(mine){
+        var findIn = function(arr, dist, label){ return arr.filter(function(p){ return normD(p.district) === normD(dist); }).map(function(p){ return {name:p.name, role:'Your ' + label + ', District ' + p.district}; }); };
+        m = { matched: mine.matched,
+              sen: mine.sldu ? findIn(d.state_senate, mine.sldu, d.chamber_names.upper) : [],
+              hou: mine.sldl ? findIn(d.state_house, mine.sldl, d.chamber_names.lower) : [],
+              rep: null };
+        var r = d.us_representatives.filter(function(p){ return String(+p.district) === String(+mine.cd); })[0];
+        if(r) m.rep = {name:r.name, role:'Your ' + r.role.replace('U.S. ','U.S. ')};
+      }
+      render(d, m);
+    }).catch(function(){ panel.hidden = false; panel.innerHTML = '<p>Sorry — this state\'s list could not load right now. Please try again shortly.</p>'; });
+  }
+
+  // address lookup via Census Geocoder (JSONP; free, no key)
+  root.querySelector('.wwmap__lookup').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = root.querySelector('#wwmap-addr').value.trim(); if(!q) return;
+    var btn = this.querySelector('button'); btn.textContent = 'Searching…'; btn.disabled = true;
+    var cb = 'wwmapCb' + Date.now(), s = document.createElement('script');
+    var done = function(){ btn.textContent = 'Find My Leaders'; btn.disabled = false; try{ delete window[cb]; }catch(x){ window[cb] = undefined; } s.remove(); };
+    var timer = setTimeout(function(){ done(); fail(); }, 15000);
+    window[cb] = function(res){
+      clearTimeout(timer); done();
+      var m = res && res.result && res.result.addressMatches && res.result.addressMatches[0];
+      if(!m) return fail();
+      var g = m.geographies, key = function(re){ var k = Object.keys(g).filter(function(k){ return re.test(k); })[0]; return k && g[k][0]; };
+      var cd = key(/Congressional Districts/), up = key(/Legislative Districts - Upper/), lo = key(/Legislative Districts - Lower/), stg = key(/^States$/);
+      var st = FIPS[(stg && stg.STATE) || (cd && cd.STATE)];
+      if(!st) return fail();
+      openState(st, { matched: m.matchedAddress, cd: cd ? (/large|^one$/i.test(cd.BASENAME) ? '0' : cd.BASENAME) : null,
+        sldu: up ? up.BASENAME : null, sldl: lo ? lo.BASENAME : null });
+    };
+    function fail(){ panel.hidden = false; panel.innerHTML = '<p><strong>We could not match that address.</strong> Try your full street address with city and state. You can also look up your <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener">U.S. Representative by ZIP</a> or your <a href="https://open.pluralpolicy.com/find_your_legislator/" target="_blank" rel="noopener">state legislators by address</a>.</p>'; }
+    s.src = 'https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=' + encodeURIComponent(q) + '&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=jsonp&callback=' + cb;
+    s.onerror = function(){ clearTimeout(timer); done(); fail(); };
+    document.body.appendChild(s);
+  });
+})();
+</script>
+</main></body></html>

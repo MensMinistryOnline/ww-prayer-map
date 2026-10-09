@@ -1,0 +1,15 @@
+{
+  "supreme_court_verified": "2026-10-09",
+  "supreme_court_source": "https://www.supremecourt.gov/about/biographies.aspx",
+  "supreme_court": [
+    {"name": "John G. Roberts, Jr.", "role": "Chief Justice of the United States"},
+    {"name": "Clarence Thomas", "role": "Associate Justice"},
+    {"name": "Samuel A. Alito, Jr.", "role": "Associate Justice"},
+    {"name": "Sonia Sotomayor", "role": "Associate Justice"},
+    {"name": "Elena Kagan", "role": "Associate Justice"},
+    {"name": "Neil M. Gorsuch", "role": "Associate Justice"},
+    {"name": "Brett M. Kavanaugh", "role": "Associate Justice"},
+    {"name": "Amy Coney Barrett", "role": "Associate Justice"},
+    {"name": "Ketanji Brown Jackson", "role": "Associate Justice"}
+  ]
+}
