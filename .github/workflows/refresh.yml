@@ -1,0 +1,26 @@
+name: Refresh leader data
+on:
+  schedule:
+    - cron: "17 9 * * *"   # every day, 4:17 a.m. Central
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pyyaml
+      - name: Get statewide officers (Open States people repo)
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/openstates/people.git people
+          cd people && git sparse-checkout set --no-cone '/data/*/executive/*'
+      - run: python scripts/build_data.py
+      - name: Commit if changed
+        run: |
+          git config user.name "ww-bot"; git config user.email "ww-bot@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet || git commit -m "Refresh leader data $(date -u +%F)"
+          git push
